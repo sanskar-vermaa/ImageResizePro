@@ -1,6 +1,8 @@
-// Lazy-load third-party libraries from a CDN only when a tool needs them.
+// Lazy-load bundled third-party libraries only when a tool needs them.
+// Libraries are self-hosted in /assets/vendor so the site works offline and without third-party CDNs.
 
 const cache = {};
+const vendor = (path) => new URL(`../../vendor/${path}`, import.meta.url).href;
 
 function loadScript(src) {
   if (cache[src]) return cache[src];
@@ -8,32 +10,29 @@ function loadScript(src) {
     const s = document.createElement('script');
     s.src = src;
     s.async = true;
-    s.crossOrigin = 'anonymous';
     s.onload = resolve;
     s.onerror = () => {
       delete cache[src];
-      reject(new Error('Could not load a required component. Check your internet connection.'));
+      reject(new Error('Could not load a required component. Please refresh the page.'));
     };
     document.head.appendChild(s);
   });
   return cache[src];
 }
 
-const CDN = 'https://cdnjs.cloudflare.com/ajax/libs';
-
 export async function loadJsPDF() {
-  await loadScript(`${CDN}/jspdf/2.5.1/jspdf.umd.min.js`);
+  await loadScript(vendor('jspdf/jspdf.umd.min.js'));
   return window.jspdf.jsPDF;
 }
 
 export async function loadJSZip() {
-  await loadScript(`${CDN}/jszip/3.10.1/jszip.min.js`);
+  await loadScript(vendor('jszip/jszip.min.js'));
   return window.JSZip;
 }
 
 export async function loadPdfJs() {
-  await loadScript(`${CDN}/pdf.js/3.11.174/pdf.min.js`);
+  await loadScript(vendor('pdfjs/pdf.min.js'));
   const lib = window.pdfjsLib;
-  lib.GlobalWorkerOptions.workerSrc = `${CDN}/pdf.js/3.11.174/pdf.worker.min.js`;
+  lib.GlobalWorkerOptions.workerSrc = vendor('pdfjs/pdf.worker.min.js');
   return lib;
 }
