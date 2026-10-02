@@ -81,3 +81,23 @@ UTILITY_PAGES.push({
   ],
   related: ['png-to-ico', 'resize-image', 'image-to-base64'],
 });
+
+UTILITY_PAGES.push({
+  slug: 'remove-exif-data',
+  tool: 'exif',
+  category: 'utility',
+  icon: 'shield',
+  name: 'Remove EXIF Data',
+  title: 'Remove EXIF Data from Photos – Delete GPS Location Online',
+  description: 'View and remove EXIF metadata from photos: GPS location, camera model, date and more. Lossless for JPG and PNG. Protect your privacy before sharing.',
+  h1: 'Remove EXIF & GPS Location from Photos',
+  intro: 'Phone photos often contain hidden data like your exact GPS location and phone model. See what is inside, then remove it before you share.',
+  howTitle: 'remove EXIF data from a photo',
+  steps: ['Upload your photos.', 'Check the metadata found in the panel — GPS location is highlighted in red.', 'Click "Remove metadata" and download the clean copies.'],
+  faq: [
+    { q: 'What is EXIF data?', a: 'EXIF is extra information saved inside photos by cameras and phones — such as date and time, camera model, settings and often the GPS coordinates where the photo was taken.' },
+    { q: 'Does removing EXIF reduce quality?', a: 'No. For JPG and PNG the metadata blocks are cut out without re-compressing the image.' },
+    { q: 'Will the photo still display the right way up?', a: 'Modern browsers and apps apply orientation automatically. If a photo appears rotated after cleaning, use the Rotate tool to fix it permanently.' },
+  ],
+  related: ['compress-image', 'rotate-image', 'add-watermark-to-image'],
+});
