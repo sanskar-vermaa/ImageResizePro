@@ -416,3 +416,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .crop-box .h-e { right: -9px; top: calc(50% - 8px); cursor: ew-resize; }
 .crop-box .h-w { left: -9px; top: calc(50% - 8px); cursor: ew-resize; }
 @media (pointer: coarse) { .crop-box .h { width: 24px; height: 24px; } }
+
+/* Keep tool cards even: clamp descriptions to 3 lines */
+.tool-card p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.feature-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
