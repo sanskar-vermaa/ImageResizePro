@@ -73,3 +73,9 @@ RESIZE_PAGES.push(
   presetPage({ slug: 'resize-image-for-instagram', name: 'Resize Image for Instagram', platform: 'Instagram', size: '1080x1080', uses: 'Instagram square posts' }),
   presetPage({ slug: 'youtube-thumbnail-resizer', name: 'YouTube Thumbnail Resizer', platform: 'YouTube', size: '1280x720', uses: 'YouTube video thumbnails' }),
 );
+
+RESIZE_PAGES.push(
+  presetPage({ slug: 'whatsapp-dp-resizer', name: 'WhatsApp DP Resizer', platform: 'WhatsApp', size: '500x500', uses: 'WhatsApp profile pictures (DP)' }),
+  presetPage({ slug: 'resize-image-for-facebook', name: 'Resize Image for Facebook', platform: 'Facebook', size: '1200x630', uses: 'Facebook link and post images' }),
+  presetPage({ slug: 'linkedin-banner-resizer', name: 'LinkedIn Banner Resizer', platform: 'LinkedIn', size: '1584x396', uses: 'LinkedIn profile background banners' }),
+);
