@@ -3,6 +3,7 @@
 import { KB_PAGES } from './kb-pages.mjs';
 import { RESIZE_PAGES } from './resize-pages.mjs';
 import { CONVERT_PAGES } from './convert-pages.mjs';
+import { PDF_PAGES } from './pdf-pages.mjs';
 
 export const CATEGORIES = [
   { id: 'compress', label: 'Compress' },
@@ -59,4 +60,5 @@ export const TOOLS = [
   ...KB_PAGES,
   ...RESIZE_PAGES,
   ...CONVERT_PAGES,
+  ...PDF_PAGES,
 ];
