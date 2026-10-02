@@ -300,3 +300,54 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .preview-box img, .preview-box canvas { max-height: 520px; object-fit: contain; }
 .stat-line { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .9rem; color: var(--text-muted); }
 .stat-line b { color: var(--text); }
+
+/* ==========================================================================
+   Content sections (how-to, features, FAQ, related)
+   ========================================================================== */
+.ad-slot {
+  margin: 22px auto; min-height: 100px; display: grid; place-items: center;
+  border: 1px dashed var(--border); border-radius: 12px; color: var(--text-muted); font-size: .75rem;
+}
+.ad-slot:empty::before { content: "Advertisement"; opacity: .6; }
+.ad-slot.has-ad { border: 0; }
+
+.content { max-width: 860px; margin: 0 auto; padding: 10px 0 30px; }
+.content section { margin: 40px 0; }
+.content ul, .content ol { padding-left: 1.3em; }
+.content li { margin-bottom: 6px; }
+
+.steps { counter-reset: step; list-style: none; padding: 0 !important; display: grid; gap: 14px; }
+.steps li {
+  counter-increment: step; position: relative; padding: 16px 16px 16px 64px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px; margin: 0;
+}
+.steps li::before {
+  content: counter(step); position: absolute; left: 16px; top: 14px; width: 34px; height: 34px;
+  border-radius: 10px; display: grid; place-items: center; font-weight: 800;
+  background: var(--brand-50); color: var(--brand);
+}
+
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.feature { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+.feature h3 { margin-bottom: 6px; font-size: 1rem; }
+.feature p { margin: 0; font-size: .92rem; color: var(--text-muted); }
+
+.faq details {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 0 18px; margin-bottom: 10px;
+}
+.faq summary {
+  cursor: pointer; font-weight: 650; padding: 16px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 1.3rem; line-height: 1; color: var(--brand); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { color: var(--text-muted); padding-bottom: 14px; margin: 0; }
+
+.related { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.related a {
+  display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px;
+  background: var(--surface); border: 1px solid var(--border); color: var(--text); font-weight: 600; font-size: .92rem;
+}
+.related a:hover { border-color: var(--brand); text-decoration: none; }
+.related a svg { width: 18px; height: 18px; color: var(--brand); flex: none; }
