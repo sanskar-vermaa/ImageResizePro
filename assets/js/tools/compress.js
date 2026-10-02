@@ -1,6 +1,6 @@
 // Image Compressor: quality mode or exact target size (KB).
 import { createBatchTool } from '../core/batch.js';
-import { segmented, slider, numberField, checkbox } from '../core/controls.js';
+import { segmented, slider, numberField, checkbox, advanced } from '../core/controls.js';
 import { html, renameExt } from '../core/utils.js';
 import { loadImage, imageToCanvas, canvasToBlob, canEncode, MIME, EXT_FOR_MIME, fitWithin } from '../core/image.js';
 
@@ -65,7 +65,9 @@ export default function mount(root, preset = {}) {
       const maxW = numberField('Max width (px, optional)', { placeholder: 'Keep original', min: 16 });
       const keepIfLarger = checkbox('Keep original if result is larger', true);
 
-      panel.append(mode.el, quality.el, target.el, format.el, maxW.el, keepIfLarger.el);
+      const adv = advanced();
+      adv.body.append(format.el, maxW.el, keepIfLarger.el);
+      panel.append(mode.el, quality.el, target.el, adv.el);
       function toggle(v) {
         quality.el.classList.toggle('hidden', v !== 'quality');
         target.el.classList.toggle('hidden', v !== 'target');
