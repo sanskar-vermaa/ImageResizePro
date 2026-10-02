@@ -11,7 +11,7 @@ import { toastError } from './toast.js';
 export function mountDropzone(container, opts = {}) {
   const {
     multiple = true,
-    accept = 'image/*',
+    accept = 'image/*,.heic,.heif',
     title = multiple ? 'Drop images here or click to upload' : 'Drop an image here or click to upload',
     hint = 'JPG, PNG, WEBP, HEIC, GIF, BMP · Ctrl+V to paste',
     validate = isImageFile,
