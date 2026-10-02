@@ -102,3 +102,9 @@ export function colorField(label, value = '#ffffff', onInput) {
   input.addEventListener('input', () => onInput?.(input.value));
   return { el, input, get: () => input.value, set: (v) => (input.value = v) };
 }
+
+/** Collapsible "Advanced options" group to keep the default UI simple. */
+export function advanced(label = 'Advanced options') {
+  const el = html(`<details class="advanced"><summary>${escapeHtml(label)}</summary><div class="advanced-body"></div></details>`);
+  return { el, body: el.querySelector('.advanced-body') };
+}

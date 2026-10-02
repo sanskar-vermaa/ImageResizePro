@@ -385,3 +385,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Collapsible advanced options */
+.advanced { border-top: 1px solid var(--border); padding-top: 12px; }
+.advanced summary { cursor: pointer; font-weight: 600; font-size: .9rem; color: var(--text-muted); list-style: none; display: flex; align-items: center; gap: 6px; }
+.advanced summary::-webkit-details-marker { display: none; }
+.advanced summary::before { content: "▸"; transition: transform .15s; }
+.advanced[open] summary::before { transform: rotate(90deg); }
+.advanced-body { display: flex; flex-direction: column; gap: 14px; margin-top: 14px; }
