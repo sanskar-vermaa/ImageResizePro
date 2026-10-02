@@ -86,7 +86,8 @@ export function readExif(buffer) {
   return out;
 }
 
-/** Remove APP1–APP15 (EXIF, XMP, ICC kept? no — APP2 ICC kept for colour accuracy) and COM segments from a JPEG. */
+/** Remove APP1 and APP3–APP15 segments (EXIF, XMP, maker notes) and comments from a JPEG.
+ *  APP2 is kept because it carries the ICC colour profile. */
 export function stripJpeg(buffer) {
   const v = new DataView(buffer);
   const src = new Uint8Array(buffer);
