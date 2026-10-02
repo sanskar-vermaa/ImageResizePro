@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { SITE } from './site.config.mjs';
 import { layout, esc, adSlot } from './layout.mjs';
 import { TOOLS, CATEGORIES } from './content/tools.mjs';
+import { STATIC_PAGES } from './content/static-pages.mjs';
 import { icon } from '../assets/js/core/icons.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -209,9 +210,23 @@ function homePage() {
   );
 }
 
+function staticPage(p) {
+  const path = `/${p.slug}/`;
+  const body = `
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li>${esc(p.h1)}</li></ol></nav>
+      <article class="prose">
+        <h1>${esc(p.h1)}</h1>
+        ${p.html}
+      </article>
+    </div>`;
+  write(path, layout({ path, title: p.title, description: p.description, body, footerGroups: footerGroups() }));
+}
+
 function build() {
   homePage();
   TOOLS.forEach(toolPage);
+  STATIC_PAGES.forEach(staticPage);
   console.log(`Built ${written.length} pages.`);
 }
 
