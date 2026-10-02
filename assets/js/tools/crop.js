@@ -30,7 +30,6 @@ export default function mount(root, preset = {}) {
       <div>
         <div class="crop-stage" style="position:relative;user-select:none;touch-action:none;margin:0 auto;max-width:100%">
           <img class="crop-img" alt="Image to crop" style="width:100%;height:auto;border-radius:8px" draggable="false" />
-          <div class="crop-shade"></div>
           <div class="crop-box">
             ${['nw', 'n', 'ne', 'e', 'se', 's', 'sw', 'w'].map((h) => `<span class="h h-${h}" data-h="${h}"></span>`).join('')}
           </div>
@@ -68,8 +67,8 @@ export default function mount(root, preset = {}) {
   opts.append(aspect.el, row);
 
   function setRatio(v) {
-    // eslint-disable-next-line no-new-func
-    ratio = v === 'free' ? null : Function(`return ${v}`)();
+    const [a, b = 1] = String(v).split('/').map(Number);
+    ratio = v === 'free' ? null : a / b;
     if (ratio && img) {
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
