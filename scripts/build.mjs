@@ -234,16 +234,17 @@ function sitemap() {
 }
 
 function notFound() {
+  // 404.html is served for any missing URL, so links must be absolute from the site root (which may be a sub-path on GitHub Pages).
+  const root = `${new URL(SITE.url).pathname.replace(/\/$/, '')}/`;
   const body = `
     <div class="container" style="text-align:center;padding:80px 16px">
       <h1>Page not found</h1>
       <p class="muted">The page you are looking for doesn’t exist or was moved.</p>
-      <p><a class="btn btn-primary" href="/">Go to all tools</a></p>
+      <p><a class="btn btn-primary" href="${root}">Go to all tools</a></p>
     </div>`;
-  // 404.html is served from any depth, so use root-absolute asset paths.
   const html = layout({ path: '/', title: `Page not found – ${SITE.name}`, description: 'Page not found.', body, footerGroups: footerGroups() })
     .replace('<meta name="robots" content="index, follow, max-image-preview:large" />', '<meta name="robots" content="noindex" />')
-    .replace(/(href|src)="\.\//g, '$1="/');
+    .replace(/(href|src)="\.\//g, `$1="${root}`);
   writeFileSync(join(ROOT, '404.html'), html);
 }
 
