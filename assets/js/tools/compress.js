@@ -11,15 +11,18 @@ function autoMime(file) {
   return 'image/jpeg';
 }
 
-/** Binary-search JPEG/WebP quality so the result fits under targetBytes. */
+/** Binary-search JPEG/WebP quality so the result fits under targetBytes.
+ *  Prefers shrinking dimensions over dropping quality below ~45%, which looks blocky. */
 async function compressToTarget(img, mime, targetBytes, background) {
   let { naturalWidth: w, naturalHeight: h } = img;
-  for (let attempt = 0; attempt < 12; attempt++) {
+  for (let attempt = 0; attempt < 16; attempt++) {
+    const tiny = w * h < 250 * 250;
+    const floor = tiny || attempt >= 14 ? 0.05 : 0.45;
     const canvas = imageToCanvas(img, { width: w, height: h, background });
-    let lo = 0.05;
+    let lo = floor;
     let hi = 0.95;
     let best = null;
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 7; i++) {
       const q = (lo + hi) / 2;
       const blob = await canvasToBlob(canvas, mime, q);
       if (blob.size <= targetBytes) {
@@ -27,10 +30,15 @@ async function compressToTarget(img, mime, targetBytes, background) {
         lo = q;
       } else hi = q;
     }
+    if (!best) {
+      const blob = await canvasToBlob(canvas, mime, floor);
+      if (blob.size <= targetBytes) best = { blob, q: floor, w, h };
+    }
     if (best) return best;
-    // Even the lowest quality is too big: shrink dimensions and retry.
-    w = Math.max(1, Math.round(w * 0.85));
-    h = Math.max(1, Math.round(h * 0.85));
+    // Too big even at the quality floor: shrink dimensions and retry.
+    const ratio = Math.max(0.5, Math.min(0.9, Math.sqrt(targetBytes / (await canvasToBlob(canvas, mime, floor)).size)));
+    w = Math.max(1, Math.round(w * ratio));
+    h = Math.max(1, Math.round(h * ratio));
   }
   throw new Error('Could not reach that size');
 }
@@ -101,7 +109,7 @@ export default function mount(root, preset = {}) {
 
       if (o.mode === 'target') {
         const targetBytes = o.targetKB * 1024;
-        if (file.size <= targetBytes && !o.maxW && file.type === mime) {
+        if (file.size <= targetBytes && !o.maxW) {
           return { blob: file, name: file.name, note: 'already under target' };
         }
         if (mime === 'image/png') mime = canEncode('image/webp') ? 'image/webp' : 'image/jpeg';
