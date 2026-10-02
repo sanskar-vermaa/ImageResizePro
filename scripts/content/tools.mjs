@@ -68,3 +68,18 @@ export const TOOLS = [
   ...EDIT_PAGES,
   ...UTILITY_PAGES,
 ];
+
+// Variant pages are still indexed and linked from related tools, but kept off the home grid to keep it easy to scan.
+const HIDE_ON_HOME = new Set([
+  'compress-image-to-10kb', 'compress-image-to-30kb', 'compress-image-to-200kb', 'compress-image-to-500kb',
+  'webp-to-png', 'jpg-to-webp', 'png-to-webp', 'jpg-to-ico', 'avif-to-jpg',
+  'png-to-pdf', 'pdf-to-png',
+  'youtube-thumbnail-resizer', 'resize-image-for-facebook', 'linkedin-banner-resizer',
+  'base64-to-image', 'black-and-white-image', 'flip-image',
+]);
+const BADGES = { 'compress-image': 'Popular', 'image-to-pdf': 'Popular', 'photo-signature-resizer': 'Exam forms', 'compress-image-to-20kb': 'Exam forms' };
+
+TOOLS.forEach((t) => {
+  t.hideOnHome = HIDE_ON_HOME.has(t.slug);
+  if (BADGES[t.slug]) t.badge = BADGES[t.slug];
+});
