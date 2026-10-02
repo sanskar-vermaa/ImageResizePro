@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /scripts/
 
-Sitemap: https://sanskar-vermaa.github.io/ImageResizePro/sitemap.xml
+Sitemap: https://imageresizepro.vercel.app/sitemap.xml
