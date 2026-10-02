@@ -34,3 +34,47 @@ if (host) {
       toastError('Tool failed to load.');
     });
 }
+
+// Home page: instant search + category filter over the tool grid.
+const search = document.getElementById('tool-search');
+const grid = document.querySelector('.tool-grid');
+if (search && grid) {
+  const cards = [...grid.querySelectorAll('.tool-card')];
+  const empty = grid.querySelector('.empty-state');
+  const chips = [...document.querySelectorAll('.chip[data-filter]')];
+  let cat = 'all';
+  const apply = () => {
+    const q = search.value.trim().toLowerCase();
+    const words = q.split(/\s+/).filter(Boolean);
+    let shown = 0;
+    cards.forEach((c) => {
+      const okCat = cat === 'all' || c.dataset.cat === cat;
+      const okQ = words.every((w) => c.dataset.search.includes(w));
+      const ok = okCat && okQ;
+      c.classList.toggle('hidden', !ok);
+      if (ok) shown++;
+    });
+    empty?.classList.toggle('hidden', shown > 0);
+  };
+  search.addEventListener('input', apply);
+  search.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const first = cards.find((c) => !c.classList.contains('hidden'));
+      if (first) window.location.href = first.href;
+    }
+  });
+  chips.forEach((chip) =>
+    chip.addEventListener('click', () => {
+      cat = chip.dataset.filter;
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+      apply();
+    }),
+  );
+  // "/" focuses search, like many web apps
+  window.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement !== search && !/input|textarea/i.test(document.activeElement?.tagName)) {
+      e.preventDefault();
+      search.focus();
+    }
+  });
+}
