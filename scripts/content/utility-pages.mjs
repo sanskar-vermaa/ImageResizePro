@@ -20,3 +20,40 @@ export const UTILITY_PAGES = [
     related: ['image-to-base64', 'photo-filters', 'image-converter'],
   },
 ];
+
+UTILITY_PAGES.push(
+  {
+    slug: 'image-to-base64',
+    tool: 'base64',
+    category: 'utility',
+    icon: 'code',
+    name: 'Image to Base64',
+    title: 'Image to Base64 Converter – Encode Image to Data URI Online',
+    description: 'Convert images to Base64 online. Get a data URI, raw Base64, HTML <img> tag or CSS background code. Also decode Base64 back to an image. Free.',
+    h1: 'Image to Base64 Converter',
+    intro: 'Encode any image as Base64 to embed it directly in HTML, CSS, JSON or e-mails — or paste Base64 to turn it back into a picture.',
+    howTitle: 'convert an image to Base64',
+    steps: ['Upload an image (small icons and logos work best).', 'Choose the output: Data URI, raw Base64, <img> tag or CSS.', 'Click Copy and paste the code where you need it.'],
+    faq: [
+      { q: 'Why is the Base64 bigger than the image?', a: 'Base64 represents binary data using text, which makes it about 33% larger. Use it for small images only.' },
+      { q: 'How do I convert Base64 back to an image?', a: 'Switch to "Base64 → Image", paste the string and click "Show image", then Download.' },
+    ],
+    related: ['base64-to-image', 'color-picker-from-image', 'compress-image'],
+  },
+  {
+    slug: 'base64-to-image',
+    tool: 'base64',
+    options: { mode: 'decode' },
+    category: 'utility',
+    icon: 'code',
+    name: 'Base64 to Image',
+    title: 'Base64 to Image Converter – Decode Base64 to PNG/JPG Online',
+    description: 'Decode Base64 strings and data URIs to images online. Preview the image and download it as PNG, JPG, GIF or WebP. Free and works offline.',
+    h1: 'Base64 to Image Decoder',
+    intro: 'Paste a Base64 string or a data:image URI to preview the picture and download it as a normal image file.',
+    howTitle: 'convert Base64 to an image',
+    steps: ['Paste your Base64 string or data URI into the box.', 'Click "Show image" to preview it.', 'Click Download to save the file.'],
+    faq: [{ q: 'Do I need the "data:image/png;base64," prefix?', a: 'No. The tool detects JPG, PNG, GIF and WebP automatically from the data itself.' }],
+    related: ['image-to-base64', 'image-converter'],
+  },
+);
