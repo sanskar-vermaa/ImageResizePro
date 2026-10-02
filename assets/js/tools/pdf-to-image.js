@@ -15,7 +15,7 @@ export function parseRange(str, max) {
   str.split(',').forEach((part) => {
     const [a, b] = part.split('-').map((x) => parseInt(x.trim(), 10));
     if (Number.isNaN(a)) return;
-    const end = Number.isNaN(b) ? a : b;
+    const end = b === undefined || Number.isNaN(b) ? a : b;
     for (let i = Math.max(1, Math.min(a, end)); i <= Math.min(max, Math.max(a, end)); i++) set.add(i);
   });
   return [...set].sort((x, y) => x - y);
