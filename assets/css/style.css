@@ -1,0 +1,52 @@
+/* ==========================================================================
+   ImageKaro — design tokens
+   ========================================================================== */
+:root {
+  --brand: #4f46e5;
+  --brand-600: #4338ca;
+  --brand-50: #eef2ff;
+  --accent: #f97316;
+  --success: #16a34a;
+  --danger: #dc2626;
+
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --text-muted: #64748b;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 22px;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, .06);
+  --shadow: 0 6px 24px -8px rgba(15, 23, 42, .15);
+  --shadow-lg: 0 20px 50px -20px rgba(79, 70, 229, .35);
+
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --maxw: 1180px;
+}
+
+:root[data-theme="dark"] {
+  --brand-50: #1e1b4b;
+  --bg: #0b1020;
+  --surface: #121a2e;
+  --surface-2: #19223a;
+  --border: #26304b;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --shadow: 0 6px 24px -8px rgba(0, 0, 0, .6);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand-50: #1e1b4b;
+    --bg: #0b1020;
+    --surface: #121a2e;
+    --surface-2: #19223a;
+    --border: #26304b;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --shadow: 0 6px 24px -8px rgba(0, 0, 0, .6);
+  }
+}
