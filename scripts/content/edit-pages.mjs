@@ -63,3 +63,28 @@ export const EDIT_PAGES = [
     related: ['rotate-image', 'crop-image'],
   },
 ];
+
+EDIT_PAGES.push({
+  slug: 'add-watermark-to-image',
+  tool: 'watermark',
+  category: 'edit',
+  icon: 'watermark',
+  name: 'Add Watermark',
+  title: 'Add Watermark to Image Online Free – Text & Logo Watermark',
+  description: 'Add a text or logo watermark to photos online. Choose position, size and opacity, or tile it across the image. Batch watermark many photos free.',
+  h1: 'Add Watermark to Photos',
+  intro: 'Protect your photos with a text or logo watermark. Place it in a corner or repeat it across the whole image — then process a whole batch at once.',
+  howTitle: 'add a watermark to an image',
+  steps: [
+    'Upload the photos you want to protect.',
+    'Type your watermark text and choose the size, opacity and position.',
+    'Optionally add a logo in Advanced options.',
+    'Click "Add watermark" and download the results.',
+  ],
+  faq: [
+    { q: 'Can I watermark many photos at once?', a: 'Yes. All uploaded photos get the same watermark and you can download them together as a ZIP.' },
+    { q: 'Can I use my logo?', a: 'Yes. Open Advanced options and pick a PNG logo — transparent PNGs work best.' },
+    { q: 'Which position is hardest to remove?', a: '"Repeat across image" tiles the watermark diagonally over the whole photo, which is the hardest to crop out.' },
+  ],
+  related: ['compress-image', 'resize-image', 'crop-image'],
+});
