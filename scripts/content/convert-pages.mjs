@@ -79,4 +79,7 @@ export const CONVERT_PAGES = [
   convertPage('webp', 'png'),
   convertPage('jpg', 'webp'),
   convertPage('png', 'webp'),
+  convertPage('png', 'ico'),
+  convertPage('jpg', 'ico'),
+  convertPage('avif', 'jpg'),
 ];
