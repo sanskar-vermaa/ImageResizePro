@@ -81,3 +81,51 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 16px; }
 .muted { color: var(--text-muted); }
+
+/* ==========================================================================
+   Header & navigation
+   ========================================================================== */
+.skip-link {
+  position: absolute; left: 8px; top: -60px; z-index: 100;
+  background: var(--brand); color: #fff; padding: 8px 14px; border-radius: 8px;
+}
+.skip-link:focus { top: 8px; }
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner { display: flex; align-items: center; gap: 16px; height: 64px; }
+.brand {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-weight: 800; font-size: 1.15rem; color: var(--text); letter-spacing: -.02em;
+}
+.brand:hover { text-decoration: none; }
+.brand img { width: 32px; height: 32px; }
+.brand b { color: var(--brand); }
+.nav { margin-left: auto; display: flex; align-items: center; gap: 4px; }
+.nav a {
+  color: var(--text-muted); font-weight: 550; font-size: .95rem;
+  padding: 8px 12px; border-radius: 10px;
+}
+.nav a:hover, .nav a[aria-current="page"] { color: var(--text); background: var(--surface-2); text-decoration: none; }
+.icon-btn {
+  display: inline-grid; place-items: center; width: 40px; height: 40px;
+  border-radius: 10px; border: 1px solid var(--border); background: var(--surface);
+  cursor: pointer; color: var(--text);
+}
+.icon-btn:hover { background: var(--surface-2); }
+.icon-btn svg { width: 20px; height: 20px; }
+.menu-toggle { display: none; }
+
+@media (max-width: 860px) {
+  .menu-toggle { display: inline-grid; }
+  .nav {
+    position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch;
+    background: var(--surface); border-bottom: 1px solid var(--border); padding: 8px 16px 16px;
+    display: none;
+  }
+  .nav.open { display: flex; }
+  .nav a { padding: 12px; }
+}
