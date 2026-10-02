@@ -40,3 +40,36 @@ export const RESIZE_PAGES = [
     related: ['compress-image', 'crop-image', 'resize-image-for-instagram', 'photo-signature-resizer'],
   },
 ];
+
+/** Social-media preset pages share one template. */
+function presetPage({ slug, name, platform, size, uses }) {
+  const [w, h] = size.split('x');
+  return {
+    ...common,
+    slug,
+    options: { preset: size, width: Number(w), height: Number(h), keepRatio: false, fit: 'cover' },
+    name,
+    title: `${name} Online Free – ${w}×${h} px`,
+    description: `Resize photos for ${platform} in one click. Automatically crop and scale to ${w}×${h} pixels — the perfect size for ${uses}. Free and private.`,
+    h1: name,
+    intro: `Get the perfect ${w}×${h} pixel size for ${uses}. The size is already set — just upload and download.`,
+    howTitle: `resize an image for ${platform}`,
+    steps: [
+      'Upload your photo (or several photos).',
+      `The ${w}×${h} preset is already selected — your image will be filled and centre-cropped to fit.`,
+      'Prefer no cropping? Open Advanced options and choose "Fit & pad with background".',
+      'Click "Resize images" and download.',
+    ],
+    faq: [
+      { q: `What size should images be for ${platform}?`, a: `${w}×${h} pixels is the recommended size for ${uses}.` },
+      { q: 'Will my photo be cropped?', a: 'By default the photo fills the frame and the edges are trimmed evenly. You can switch to padding in Advanced options to keep the whole picture.' },
+      { q: 'Does it reduce quality?', a: 'No visible quality loss — the image is resampled with high-quality smoothing and saved at 92% quality.' },
+    ],
+    related: ['resize-image', 'crop-image', 'compress-image'],
+  };
+}
+
+RESIZE_PAGES.push(
+  presetPage({ slug: 'resize-image-for-instagram', name: 'Resize Image for Instagram', platform: 'Instagram', size: '1080x1080', uses: 'Instagram square posts' }),
+  presetPage({ slug: 'youtube-thumbnail-resizer', name: 'YouTube Thumbnail Resizer', platform: 'YouTube', size: '1280x720', uses: 'YouTube video thumbnails' }),
+);
