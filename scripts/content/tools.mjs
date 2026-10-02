@@ -1,5 +1,6 @@
 // Tool catalogue. Every entry becomes its own SEO landing page at /<slug>/.
 // `tool` is the JS module in assets/js/tools/, `options` are passed to it.
+import { KB_PAGES } from './kb-pages.mjs';
 
 export const CATEGORIES = [
   { id: 'compress', label: 'Compress' },
@@ -53,4 +54,5 @@ export const TOOLS = [
     related: ['compress-image-to-50kb', 'compress-image-to-20kb', 'resize-image', 'image-converter'],
   },
   // @@end
+  ...KB_PAGES,
 ];
