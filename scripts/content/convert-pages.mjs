@@ -1,6 +1,6 @@
 // Format-conversion landing pages ("png to jpg", "webp to jpg" ...).
 
-const NAMES = { jpg: 'JPG', png: 'PNG', webp: 'WebP', avif: 'AVIF', bmp: 'BMP', ico: 'ICO', gif: 'GIF' };
+const NAMES = { jpg: 'JPG', png: 'PNG', webp: 'WebP', avif: 'AVIF', bmp: 'BMP', ico: 'ICO', gif: 'GIF', heic: 'HEIC' };
 
 const WHY = {
   jpg: 'JPG is the most widely supported photo format — it opens everywhere and is accepted by almost every website and form.',
@@ -82,4 +82,20 @@ export const CONVERT_PAGES = [
   convertPage('png', 'ico'),
   convertPage('jpg', 'ico'),
   convertPage('avif', 'jpg'),
+  {
+    ...convertPage('heic', 'jpg'),
+    title: 'HEIC to JPG Converter – Convert iPhone Photos to JPG Free',
+    description: 'Convert HEIC to JPG online for free. Turn iPhone HEIC/HEIF photos into JPG that opens everywhere. Batch convert, no upload, works on Windows and Android.',
+    intro: 'iPhone photos saved as HEIC won’t open on many Windows PCs, Android phones and websites. Convert them to JPG in seconds — right in your browser.',
+    article: [
+      {
+        h: 'What is a HEIC file?',
+        p: [
+          'HEIC (High Efficiency Image Container) is the default photo format on iPhones. It saves space, but many websites, forms and older computers cannot open it.',
+          'This converter decodes HEIC photos on your device and saves them as standard JPG files that work everywhere. Large photos can take a few seconds each.',
+        ],
+      },
+    ],
+  },
+  convertPage('heic', 'png'),
 ];
