@@ -35,7 +35,7 @@ export default function mount(root, preset = {}) {
           <canvas class="pv" style="cursor:grab;touch-action:none;box-shadow:var(--shadow);max-height:420px"></canvas>
         </div>
         <p class="muted" style="text-align:center;font-size:.85rem;margin:10px 0 0">Drag the photo to position it · use Zoom to fit the face</p>
-        <div class="stat-line" style="justify-content:center;margin-top:10px"></div>
+        <p class="stat-line muted" style="display:block;text-align:center;margin:10px 0 0"></p>
         <div class="actions">
           <button type="button" class="btn btn-secondary btn-sm" data-act="change">${icons.refresh} Change photo</button>
         </div>
