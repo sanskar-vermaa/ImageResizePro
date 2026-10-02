@@ -36,3 +36,8 @@ export async function loadPdfJs() {
   lib.GlobalWorkerOptions.workerSrc = vendor('pdfjs/pdf.worker.min.js');
   return lib;
 }
+
+export async function loadHeic2any() {
+  await loadScript(vendor('heic2any/heic2any.min.js'));
+  return window.heic2any;
+}
