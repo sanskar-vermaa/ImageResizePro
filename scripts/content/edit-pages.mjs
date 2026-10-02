@@ -145,3 +145,22 @@ EDIT_PAGES.push({
   ],
   related: ['photo-filters', 'crop-image', 'add-watermark-to-image'],
 });
+
+EDIT_PAGES.push({
+  slug: 'merge-images',
+  tool: 'merge',
+  category: 'edit',
+  icon: 'merge',
+  name: 'Merge Images',
+  title: 'Merge Images Online – Combine Photos Side by Side or Grid',
+  description: 'Combine multiple images into one online. Put photos side by side, stack them vertically or make a grid collage with spacing. Free, no upload needed.',
+  h1: 'Merge Images into One',
+  intro: 'Join two or more photos into a single image — side by side, one above the other, or as a neat grid collage.',
+  howTitle: 'merge images',
+  steps: ['Upload two or more images.', 'Choose Side by side, Stacked or Grid and adjust the spacing.', 'Click "Download merged image".'],
+  faq: [
+    { q: 'How do I put two photos side by side?', a: 'Upload both photos and keep "Side by side" selected. They are scaled to the same height automatically.' },
+    { q: 'Can I merge front and back of an ID card?', a: 'Yes — choose "Stacked" to put the front above the back in one image, which many forms ask for.' },
+  ],
+  related: ['image-to-pdf', 'resize-image', 'crop-image'],
+});
