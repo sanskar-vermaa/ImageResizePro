@@ -57,3 +57,27 @@ UTILITY_PAGES.push(
     related: ['image-to-base64', 'image-converter'],
   },
 );
+
+UTILITY_PAGES.push({
+  slug: 'favicon-generator',
+  tool: 'favicon',
+  category: 'utility',
+  icon: 'star',
+  name: 'Favicon Generator',
+  title: 'Favicon Generator – Create favicon.ico & App Icons from Image',
+  description: 'Generate a complete favicon package from any image: favicon.ico, 16/32px PNGs, Apple touch icon, Android icons, web manifest and HTML code. Free.',
+  h1: 'Favicon Generator',
+  intro: 'Upload your logo and get every icon your website needs — favicon.ico, PNG favicons, Apple touch icon, Android icons and the HTML code — in one ZIP.',
+  howTitle: 'create a favicon',
+  steps: [
+    'Upload your logo — a square PNG with a transparent background works best.',
+    'Choose a transparent or coloured background and the shape.',
+    'Click "Download favicon package".',
+    'Unzip the files into your website’s root folder and paste the HTML code into the <head>.',
+  ],
+  faq: [
+    { q: 'What sizes are included?', a: 'favicon.ico (16, 32, 48 px), favicon-16x16.png, favicon-32x32.png, apple-touch-icon.png (180 px), and Android icons at 192 and 512 px.' },
+    { q: 'Do I still need favicon.ico?', a: 'Yes — some browsers and tools still request /favicon.ico, so the package includes it alongside the PNG icons.' },
+  ],
+  related: ['png-to-ico', 'resize-image', 'image-to-base64'],
+});
