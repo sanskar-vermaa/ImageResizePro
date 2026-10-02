@@ -1,0 +1,13 @@
+{
+  "name": "imageresizepro",
+  "version": "1.0.0",
+  "description": "Free, private, in-browser image tools: compress, resize, convert, crop and image to PDF.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "serve": "npx --yes serve -l 5173 ."
+  },
+  "author": "Sanskar Verma",
+  "license": "MIT"
+}
