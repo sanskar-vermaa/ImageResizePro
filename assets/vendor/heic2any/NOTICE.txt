@@ -1,0 +1,3 @@
+heic2any (MIT) bundles libheif, which is licensed under LGPL-3.0.
+The file heic2any.min.js is redistributed unmodified from the heic2any npm package v0.0.4.
+Source: https://github.com/alexcorvi/heic2any and https://github.com/strukturag/libheif
