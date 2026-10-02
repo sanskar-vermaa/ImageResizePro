@@ -6,6 +6,7 @@ import { CONVERT_PAGES } from './convert-pages.mjs';
 import { PDF_PAGES } from './pdf-pages.mjs';
 import { EXAM_PAGES } from './exam-pages.mjs';
 import { EDIT_PAGES } from './edit-pages.mjs';
+import { UTILITY_PAGES } from './utility-pages.mjs';
 
 export const CATEGORIES = [
   { id: 'compress', label: 'Compress' },
@@ -65,4 +66,5 @@ export const TOOLS = [
   ...PDF_PAGES,
   ...EXAM_PAGES,
   ...EDIT_PAGES,
+  ...UTILITY_PAGES,
 ];
