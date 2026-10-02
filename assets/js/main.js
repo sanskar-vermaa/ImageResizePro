@@ -78,3 +78,11 @@ if (search && grid) {
     }
   });
 }
+
+// Offline support (PWA). The service worker lives at the site root next to index.html.
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', () => {
+    const swUrl = new URL('../../sw.js', import.meta.url);
+    navigator.serviceWorker.register(swUrl, { scope: new URL('../../', import.meta.url).pathname }).catch(() => {});
+  });
+}
