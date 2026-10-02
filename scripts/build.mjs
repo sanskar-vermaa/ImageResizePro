@@ -110,7 +110,107 @@ function toolPage(t) {
   write(path, layout({ path, title: t.title, description: t.description, body, jsonLd, footerGroups: footerGroups() }));
 }
 
+function homePage() {
+  // Only the "main" tool of each family shows on the home grid; variants are linked from the tool pages.
+  const featured = TOOLS.filter((t) => !t.hideOnHome);
+  const cards = featured
+    .map(
+      (t) => `
+        <a class="tool-card" href="${t.slug}/" data-cat="${t.category}" data-search="${esc(`${t.name} ${t.h1 || ''} ${t.keywords || ''}`.toLowerCase())}">
+          <span class="ico">${icon(t.icon)}</span>
+          ${t.badge ? `<span class="tag">${esc(t.badge)}</span>` : ''}
+          <h3>${esc(t.name)}</h3>
+          <p>${esc(t.cardText || t.intro.split('. ')[0].replace(/\.$/, ''))}.</p>
+        </a>`,
+    )
+    .join('');
+  const chips = [{ id: 'all', label: 'All' }, ...CATEGORIES]
+    .map((c) => `<button type="button" class="chip" data-filter="${c.id}" aria-pressed="${c.id === 'all'}">${esc(c.label)}</button>`)
+    .join('');
+
+  const faq = [
+    { q: 'Is ImageResizePro really free?', a: 'Yes. Every tool is free to use with no sign-up, no watermark and no daily limits.' },
+    { q: 'Are my images uploaded to a server?', a: 'No. All processing happens inside your web browser using your own device, so your photos never leave your computer or phone.' },
+    { q: 'Which image formats are supported?', a: 'JPG/JPEG, PNG, WebP, GIF, BMP and AVIF as input (depending on your browser), and JPG, PNG, WebP, AVIF, BMP, ICO and PDF as output.' },
+    { q: 'Does it work on mobile phones?', a: 'Yes. ImageResizePro is designed for phones first and works in Chrome, Safari, Firefox and Edge on Android and iPhone.' },
+    { q: 'Can I process many images at once?', a: 'Most tools support batch processing — add as many images as you like and download them all together as a ZIP file.' },
+  ];
+
+  const body = `
+    <section class="hero container">
+      <h1>Free Online Image Tools to <span>Resize, Compress &amp; Convert</span></h1>
+      <p class="lead">Reduce photo size in KB, resize for exam forms, convert JPG to PDF and more — fast, free and 100% private. Your files never leave your device.</p>
+      <div class="search-wrap">
+        ${icon('search')}
+        <input id="tool-search" type="search" placeholder="Search tools… e.g. compress, jpg to pdf, 20kb" aria-label="Search tools" autocomplete="off" />
+      </div>
+      <div class="badges">
+        <span class="badge">${icon('check')} No sign-up</span>
+        <span class="badge">${icon('check')} No watermark</span>
+        <span class="badge">${icon('check')} Files stay on your device</span>
+        <span class="badge">${icon('check')} Works on mobile</span>
+      </div>
+    </section>
+    <div class="container" id="all-tools">
+      ${adSlot('top')}
+      <div class="filters" role="group" aria-label="Filter tools">${chips}</div>
+      <div class="tool-grid">${cards}<p class="empty-state hidden">No tool found. Try “compress”, “pdf” or “resize”.</p></div>
+      <div class="content">
+        <section>
+          <h2>Why people choose ${esc(SITE.name)}</h2>
+          <div class="feature-grid">${DEFAULT_FEATURES.map((f) => `<div class="feature"><h3>${esc(f.h)}</h3><p>${esc(f.p)}</p></div>`).join('')}</div>
+        </section>
+        ${adSlot('middle')}
+        <section>
+          <h2>All the image tools you need in one place</h2>
+          <p>${esc(SITE.name)} brings together the everyday image jobs people search for most: <a href="compress-image/">compressing images</a> to a smaller file size, <a href="resize-image/">resizing photos</a> to exact pixels, <a href="image-to-pdf/">turning images into PDF</a>, <a href="image-converter/">converting between JPG, PNG and WebP</a>, and preparing <a href="photo-signature-resizer/">photos and signatures for online application forms</a>.</p>
+          <p>Unlike most online converters, nothing is uploaded. The tools run on modern browser technology directly on your phone or computer, which makes them faster and keeps private documents — ID cards, certificates, personal photos — completely private.</p>
+        </section>
+        <section class="faq">
+          <h2>Frequently asked questions</h2>
+          ${faq.map((f) => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
+        </section>
+        ${adSlot('bottom')}
+      </div>
+    </div>`;
+
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: SITE.name,
+      url: `${SITE.url}/`,
+      description: SITE.tagline,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: SITE.name,
+      url: `${SITE.url}/`,
+      logo: `${SITE.url}/assets/img/icon-512.png`,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    },
+  ];
+
+  write(
+    '/',
+    layout({
+      path: '/',
+      title: `${SITE.name} – Free Online Image Resizer, Compressor & Converter`,
+      description: 'Free online image tools: compress images to 20KB/50KB, resize photos, convert JPG to PDF, PNG to JPG and more. No upload, no sign-up, 100% private.',
+      body,
+      jsonLd,
+      footerGroups: footerGroups(),
+    }),
+  );
+}
+
 function build() {
+  homePage();
   TOOLS.forEach(toolPage);
   console.log(`Built ${written.length} pages.`);
 }
