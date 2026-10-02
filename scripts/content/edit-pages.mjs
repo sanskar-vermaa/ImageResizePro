@@ -88,3 +88,40 @@ EDIT_PAGES.push({
   ],
   related: ['compress-image', 'resize-image', 'crop-image'],
 });
+
+EDIT_PAGES.push(
+  {
+    slug: 'photo-filters',
+    tool: 'filters',
+    category: 'edit',
+    icon: 'filter',
+    name: 'Photo Filters & Adjust',
+    title: 'Photo Editor Online – Brightness, Contrast & Filters Free',
+    description: 'Edit photos online: adjust brightness, contrast and saturation, or apply B&W, vintage and vivid filters with live preview. Batch edit and download free.',
+    h1: 'Photo Filters & Adjustments',
+    intro: 'Brighten dark photos, boost colours or give pictures a vintage or black & white look — with a live preview, then apply it to every photo at once.',
+    howTitle: 'edit a photo',
+    steps: ['Upload one or more photos.', 'Pick a quick look or move the sliders while watching the preview.', 'Click "Apply to all images" and download.'],
+    faq: [
+      { q: 'How do I brighten a dark photo?', a: 'Increase Brightness to about 120–140% and Contrast slightly. Watch the preview until it looks right.' },
+      { q: 'Are the settings applied to every image?', a: 'Yes. All images in the list get the same adjustments, which is perfect for a consistent look.' },
+    ],
+    related: ['black-and-white-image', 'blur-image', 'compress-image'],
+  },
+  {
+    slug: 'black-and-white-image',
+    tool: 'filters',
+    options: { look: 'bw' },
+    category: 'edit',
+    icon: 'filter',
+    name: 'Black & White Converter',
+    title: 'Convert Image to Black and White Online – Grayscale Free',
+    description: 'Turn colour photos into black and white (grayscale) online in one click. Adjust contrast, batch convert and download free. No upload needed.',
+    h1: 'Convert Image to Black & White',
+    intro: 'Give your photos a classic black and white look instantly. The B&W filter is already applied — just upload, preview and download.',
+    howTitle: 'convert an image to black and white',
+    steps: ['Upload your photos.', 'The black & white look is already selected — tweak contrast if you like.', 'Click "Apply to all images" and download.'],
+    faq: [{ q: 'Is grayscale the same as black and white?', a: 'In photos, yes — grayscale keeps all the shades of grey between black and white, which is what people usually mean by a black and white photo.' }],
+    related: ['photo-filters', 'blur-image'],
+  },
+);
