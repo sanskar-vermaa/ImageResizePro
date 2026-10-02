@@ -146,6 +146,7 @@ export function createBatchTool(root, cfg) {
       const pct = percentChange(before, after);
       summaryEl.innerHTML = `Total: ${formatBytes(before)} → <b>${formatBytes(after)}</b>${pct > 0 ? ` (saved ${pct}%)` : ''}`;
       toastSuccess(`Done! ${ok.length} image${ok.length > 1 ? 's' : ''} ready.`);
+      if (window.matchMedia('(max-width: 900px)').matches) dlAllBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     if (ok.length < items.length) toastError(`${items.length - ok.length} file(s) failed.`);
   }
