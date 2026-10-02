@@ -8,7 +8,7 @@
 
 Compress to 20 KB · Resize for exam forms · JPG to PDF · PNG to JPG · HEIC to JPG · Crop · Watermark · and more
 
-**🌐 Live site: [sanskar-vermaa.github.io/ImageResizePro](https://sanskar-vermaa.github.io/ImageResizePro/)**
+**🌐 Live site: [imageresizepro.vercel.app](https://imageresizepro.vercel.app/)**
 
 ![ImageResizePro home page](docs/screenshots/home.png)
 
