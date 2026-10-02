@@ -2,6 +2,7 @@
 // `tool` is the JS module in assets/js/tools/, `options` are passed to it.
 import { KB_PAGES } from './kb-pages.mjs';
 import { RESIZE_PAGES } from './resize-pages.mjs';
+import { CONVERT_PAGES } from './convert-pages.mjs';
 
 export const CATEGORIES = [
   { id: 'compress', label: 'Compress' },
@@ -57,4 +58,5 @@ export const TOOLS = [
   // @@end
   ...KB_PAGES,
   ...RESIZE_PAGES,
+  ...CONVERT_PAGES,
 ];
