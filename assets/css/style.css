@@ -420,3 +420,4 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* Keep tool cards even: clamp descriptions to 3 lines */
 .tool-card p { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .feature-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.crop-box.round { border-radius: 50%; }

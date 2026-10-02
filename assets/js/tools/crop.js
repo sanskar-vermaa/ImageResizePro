@@ -64,7 +64,21 @@ export default function mount(root, preset = {}) {
   });
   const row = html('<div class="row"></div>');
   row.append(wF.el, hF.el);
-  opts.append(aspect.el, row);
+  const shape = segmented(
+    'Shape',
+    [
+      { value: 'rect', label: 'Rectangle' },
+      { value: 'circle', label: 'Circle' },
+    ],
+    preset.shape || 'rect',
+    (v) => {
+      boxEl.classList.toggle('round', v === 'circle');
+      if (v === 'circle') {
+        aspect.set('1', true);
+      }
+    },
+  );
+  opts.append(shape.el, aspect.el, row);
 
   function setRatio(v) {
     const [a, b = 1] = String(v).split('/').map(Number);
@@ -179,6 +193,7 @@ export default function mount(root, preset = {}) {
         h: Math.round(img.naturalHeight * 0.8),
       });
       setRatio(aspect.get());
+      boxEl.classList.toggle('round', shape.get() === 'circle');
     } catch (e) {
       toastError(e.message);
     }
@@ -188,8 +203,13 @@ export default function mount(root, preset = {}) {
     if (!img) return;
     const c = createCanvas(box.w, box.h);
     const ctx = c.getContext('2d');
-    let mime = canEncode(file.type) ? file.type : 'image/png';
-    if (mime === 'image/jpeg') {
+    const circle = shape.get() === 'circle';
+    let mime = circle ? 'image/png' : canEncode(file.type) ? file.type : 'image/png';
+    if (circle) {
+      ctx.beginPath();
+      ctx.ellipse(c.width / 2, c.height / 2, c.width / 2, c.height / 2, 0, 0, Math.PI * 2);
+      ctx.clip();
+    } else if (mime === 'image/jpeg') {
       ctx.fillStyle = '#fff';
       ctx.fillRect(0, 0, c.width, c.height);
     }
