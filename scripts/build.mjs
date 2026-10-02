@@ -223,11 +223,37 @@ function staticPage(p) {
   write(path, layout({ path, title: p.title, description: p.description, body, footerGroups: footerGroups() }));
 }
 
+function sitemap() {
+  const today = new Date().toISOString().slice(0, 10);
+  const prio = (p) => (p === '/' ? '1.0' : STATIC_PAGES.some((s) => `/${s.slug}/` === p) ? '0.3' : '0.8');
+  const urls = written
+    .map((p) => `  <url><loc>${SITE.url}${p}</loc><lastmod>${today}</lastmod><changefreq>monthly</changefreq><priority>${prio(p)}</priority></url>`)
+    .join('\n');
+  writeFileSync(join(ROOT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
+  writeFileSync(join(ROOT, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /scripts/\n\nSitemap: ${SITE.url}/sitemap.xml\n`);
+}
+
+function notFound() {
+  const body = `
+    <div class="container" style="text-align:center;padding:80px 16px">
+      <h1>Page not found</h1>
+      <p class="muted">The page you are looking for doesn’t exist or was moved.</p>
+      <p><a class="btn btn-primary" href="/">Go to all tools</a></p>
+    </div>`;
+  // 404.html is served from any depth, so use root-absolute asset paths.
+  const html = layout({ path: '/', title: `Page not found – ${SITE.name}`, description: 'Page not found.', body, footerGroups: footerGroups() })
+    .replace('<meta name="robots" content="index, follow, max-image-preview:large" />', '<meta name="robots" content="noindex" />')
+    .replace(/(href|src)="\.\//g, '$1="/');
+  writeFileSync(join(ROOT, '404.html'), html);
+}
+
 function build() {
   homePage();
   TOOLS.forEach(toolPage);
   STATIC_PAGES.forEach(staticPage);
-  console.log(`Built ${written.length} pages.`);
+  sitemap();
+  notFound();
+  console.log(`Built ${written.length} pages + sitemap.xml, robots.txt, 404.html`);
 }
 
 build();
