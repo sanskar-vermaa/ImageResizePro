@@ -54,3 +54,36 @@ export const PDF_PAGES = [
   imagePdfPage('jpg-to-pdf', 'JPG'),
   imagePdfPage('png-to-pdf', 'PNG'),
 ];
+
+function pdfImagePage(fmt, extra = {}) {
+  const lower = fmt.toLowerCase();
+  return {
+    slug: `pdf-to-${lower}`,
+    tool: 'pdf-to-image',
+    options: { format: lower === 'png' ? 'png' : 'jpg' },
+    category: 'pdf',
+    icon: 'image',
+    name: `PDF to ${fmt}`,
+    title: `PDF to ${fmt} Converter – Convert PDF Pages to ${fmt} Free`,
+    description: `Convert PDF to ${fmt} images online. Save every page of a PDF as a high-quality ${fmt}, or pick specific pages. Free, fast and private — no upload.`,
+    h1: `PDF to ${fmt} Converter`,
+    intro: `Extract each page of a PDF as a sharp ${fmt} image. Choose the quality, select pages, and download them one by one or as a ZIP.`,
+    howTitle: `convert PDF to ${fmt}`,
+    steps: [
+      'Click "Select file" and choose your PDF.',
+      `Choose ${fmt} and the output quality (High is recommended).`,
+      'Optionally enter page numbers in Advanced options, e.g. 1-3, 5.',
+      'Click "Convert to images" and download the pages.',
+    ],
+    faq: [
+      { q: `How do I save a PDF page as ${fmt}?`, a: `Upload the PDF, click Convert, then press the download button under the page you want. Use "Download all" to get every page in a ZIP.` },
+      { q: 'Can I convert only some pages?', a: 'Yes. Open Advanced options and type the pages, for example "2" or "1-4, 7".' },
+      { q: 'Does it work with password-protected PDFs?', a: 'No — please remove the password first.' },
+      { q: 'Is my PDF uploaded?', a: 'No. Pages are rendered inside your browser using PDF.js, so your document stays on your device.' },
+    ],
+    related: ['image-to-pdf', 'jpg-to-pdf', 'compress-image'],
+    ...extra,
+  };
+}
+
+PDF_PAGES.push(pdfImagePage('JPG'), pdfImagePage('PNG'));
