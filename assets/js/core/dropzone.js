@@ -13,7 +13,7 @@ export function mountDropzone(container, opts = {}) {
     multiple = true,
     accept = 'image/*',
     title = multiple ? 'Drop images here or click to upload' : 'Drop an image here or click to upload',
-    hint = 'JPG, PNG, WEBP, GIF, BMP · Ctrl+V to paste',
+    hint = 'JPG, PNG, WEBP, HEIC, GIF, BMP · Ctrl+V to paste',
     validate = isImageFile,
     onFiles,
   } = opts;
