@@ -48,5 +48,5 @@ export function kbPage(kb) {
   };
 }
 
-export const KB_SIZES = [20, 50];
+export const KB_SIZES = [10, 20, 30, 50];
 export const KB_PAGES = KB_SIZES.map(kbPage);
