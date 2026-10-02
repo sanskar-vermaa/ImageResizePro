@@ -1,8 +1,9 @@
 // Global site settings. Edit these before deploying.
 export const SITE = {
   name: 'ImageResizePro',
-  // Your live domain, without trailing slash. Used for canonical URLs, sitemap and Open Graph tags.
-  url: 'https://imageresizepro.com',
+  // Your live site address, without trailing slash. Used for canonical URLs, sitemap and Open Graph tags.
+  // Free GitHub Pages address for now — change to your own domain (e.g. https://imageresizepro.com) once you buy one.
+  url: 'https://sanskar-vermaa.github.io/ImageResizePro',
   tagline: 'Free online image tools — resize, compress, convert & make PDFs',
   email: 'contact@imageresizepro.com',
   owner: 'Sanskar Verma',
