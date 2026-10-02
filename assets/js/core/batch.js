@@ -82,7 +82,7 @@ export function createBatchTool(root, cfg) {
       }
       const row = html(`
         <div class="file-item">
-          <img src="${it.thumb}" alt="" loading="lazy" />
+          <img src="${it.thumb}" alt="" loading="lazy" onerror="this.style.visibility='hidden'" />
           <div class="meta">
             <div class="name" title="${escapeHtml(it.file.name)}">${escapeHtml(r ? r.name : it.file.name)}</div>
             <div class="info">${info}</div>
