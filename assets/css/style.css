@@ -254,3 +254,49 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .tool-layout { grid-template-columns: 1fr; }
   .workspace { padding: 14px; border-radius: var(--radius); }
 }
+
+/* ==========================================================================
+   Dropzone & file list
+   ========================================================================== */
+.dropzone {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 12px; min-height: 260px; padding: 32px 20px; text-align: center; cursor: pointer;
+  border: 2px dashed color-mix(in srgb, var(--brand) 45%, var(--border)); border-radius: var(--radius);
+  background: color-mix(in srgb, var(--brand-50) 60%, var(--surface));
+  transition: background .15s ease, border-color .15s ease;
+}
+.dropzone:hover, .dropzone.drag { border-color: var(--brand); background: var(--brand-50); }
+.dropzone .dz-icon {
+  width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center;
+  background: var(--brand); color: #fff; box-shadow: var(--shadow-lg);
+}
+.dropzone .dz-icon svg { width: 30px; height: 30px; }
+.dropzone strong { font-size: 1.15rem; }
+.dropzone small { color: var(--text-muted); }
+.dropzone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+.file-list { display: flex; flex-direction: column; gap: 10px; }
+.file-item {
+  display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px;
+}
+.file-item img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; background: var(--surface-2); }
+.file-item .meta { min-width: 0; }
+.file-item .name { font-weight: 600; font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.file-item .info { font-size: .8rem; color: var(--text-muted); }
+.file-item .info .saved { color: var(--success); font-weight: 700; }
+.file-item .info .grew { color: var(--danger); font-weight: 700; }
+.file-item .ops { display: flex; gap: 6px; align-items: center; }
+.file-item.dragging { opacity: .5; }
+.file-item[draggable="true"] { cursor: grab; }
+
+.preview-box {
+  background-color: var(--surface-2);
+  background-image: linear-gradient(45deg, rgba(0,0,0,.05) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.05) 75%),
+    linear-gradient(45deg, rgba(0,0,0,.05) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.05) 75%);
+  background-size: 20px 20px; background-position: 0 0, 10px 10px;
+  border-radius: var(--radius); min-height: 280px; display: grid; place-items: center; overflow: hidden; position: relative;
+}
+.preview-box img, .preview-box canvas { max-height: 520px; object-fit: contain; }
+.stat-line { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .9rem; color: var(--text-muted); }
+.stat-line b { color: var(--text); }
