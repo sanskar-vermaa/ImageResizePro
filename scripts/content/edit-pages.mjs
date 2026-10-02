@@ -164,3 +164,23 @@ EDIT_PAGES.push({
   ],
   related: ['image-to-pdf', 'resize-image', 'crop-image'],
 });
+
+EDIT_PAGES.push({
+  slug: 'circle-crop-image',
+  tool: 'crop',
+  options: { shape: 'circle', ratio: '1' },
+  category: 'edit',
+  icon: 'crop',
+  name: 'Circle Crop',
+  title: 'Circle Crop Image Online – Make Round Profile Picture Free',
+  description: 'Crop images into a circle online. Make round profile pictures and logos with a transparent background (PNG). Free, works on mobile, no upload needed.',
+  h1: 'Circle Crop Image',
+  intro: 'Turn any photo into a perfectly round picture with a transparent background — great for profile photos, logos and stickers.',
+  howTitle: 'crop an image into a circle',
+  steps: ['Upload your photo.', 'Move and resize the circle over the part you want to keep.', 'Click "Crop & download" to save a round PNG with a transparent background.'],
+  faq: [
+    { q: 'Why is the result a PNG?', a: 'Only PNG keeps the transparent corners around the circle. JPG would fill them with a solid colour.' },
+    { q: 'Can I make an oval?', a: 'Choose the "Free" ratio after selecting Circle to stretch the shape into an oval.' },
+  ],
+  related: ['crop-image', 'whatsapp-dp-resizer', 'resize-image'],
+});
