@@ -222,3 +222,35 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .tool-card p { margin: 0; color: var(--text-muted); font-size: .92rem; line-height: 1.5; }
 .tool-card .tag { align-self: flex-start; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--accent); }
 .empty-state { text-align: center; color: var(--text-muted); padding: 30px; grid-column: 1 / -1; }
+
+/* ==========================================================================
+   Tool page layout
+   ========================================================================== */
+.breadcrumb { font-size: .85rem; color: var(--text-muted); padding: 18px 0 0; }
+.breadcrumb ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+.breadcrumb li + li::before { content: "›"; margin-right: 6px; }
+.breadcrumb a { color: var(--text-muted); }
+
+.tool-head { text-align: center; padding: 26px 0 22px; }
+.tool-head p { color: var(--text-muted); font-size: 1.08rem; max-width: 700px; margin: 0 auto; }
+
+.workspace {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow); padding: 22px; margin-bottom: 26px;
+}
+.tool-layout { display: grid; grid-template-columns: 1fr 320px; gap: 22px; align-items: start; }
+.tool-layout.single { grid-template-columns: 1fr; }
+.panel {
+  background: var(--surface-2); border-radius: var(--radius); padding: 18px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.panel h3 { margin: 0; font-size: 1rem; }
+.row { display: flex; gap: 10px; align-items: flex-end; }
+.row > * { flex: 1; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 18px; }
+.hidden { display: none !important; }
+
+@media (max-width: 900px) {
+  .tool-layout { grid-template-columns: 1fr; }
+  .workspace { padding: 14px; border-radius: var(--radius); }
+}
