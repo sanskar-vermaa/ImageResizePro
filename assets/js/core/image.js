@@ -21,8 +21,22 @@ export const EXT_FOR_MIME = {
   'image/x-icon': 'ico',
 };
 
-/** Load a File/Blob into an HTMLImageElement. */
-export function loadImage(fileOrBlob) {
+export const isHeic = (f) => /image\/hei[cf]/i.test(f.type || '') || /\.hei[cf]$/i.test(f.name || '');
+
+/** Load a File/Blob into an HTMLImageElement. HEIC/HEIF (iPhone) photos are decoded via heic2any when needed. */
+export async function loadImage(fileOrBlob) {
+  try {
+    return await decodeImage(fileOrBlob);
+  } catch (err) {
+    if (!isHeic(fileOrBlob)) throw err;
+    const { loadHeic2any } = await import('./libs.js');
+    const heic2any = await loadHeic2any();
+    const out = await heic2any({ blob: fileOrBlob, toType: 'image/jpeg', quality: 0.95 });
+    return decodeImage(Array.isArray(out) ? out[0] : out);
+  }
+}
+
+function decodeImage(fileOrBlob) {
   return new Promise((resolve, reject) => {
     const url = URL.createObjectURL(fileOrBlob);
     const img = new Image();
