@@ -125,3 +125,23 @@ EDIT_PAGES.push(
     related: ['photo-filters', 'blur-image'],
   },
 );
+
+EDIT_PAGES.push({
+  slug: 'blur-image',
+  tool: 'filters',
+  options: { look: 'blur' },
+  category: 'edit',
+  icon: 'blur',
+  name: 'Blur Image',
+  title: 'Blur Image Online Free – Add Blur Effect to Photos',
+  description: 'Blur images online for free. Add a soft or strong blur to photos for backgrounds, wallpapers and privacy. Live preview, batch processing, no upload.',
+  h1: 'Blur Image Online',
+  intro: 'Soften a whole photo for a dreamy background or wallpaper. Control the blur strength with a slider and see the result live.',
+  howTitle: 'blur an image',
+  steps: ['Upload your photo.', 'Move the Blur slider until you like the preview.', 'Click "Apply to all images" and download.'],
+  faq: [
+    { q: 'How strong can the blur be?', a: 'Up to 20 pixels. For very large photos, a higher value gives a softer look.' },
+    { q: 'Can I blur only part of an image?', a: 'This tool blurs the whole picture. Crop first if you only need part of it.' },
+  ],
+  related: ['photo-filters', 'crop-image', 'add-watermark-to-image'],
+});
