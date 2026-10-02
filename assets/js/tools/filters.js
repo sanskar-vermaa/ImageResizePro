@@ -12,6 +12,7 @@ const LOOKS = {
   warm: { brightness: 105, contrast: 100, saturate: 120, grayscale: 0, sepia: 20, blur: 0, hue: -10, invert: 0 },
   cool: { brightness: 100, contrast: 105, saturate: 90, grayscale: 0, sepia: 0, blur: 0, hue: 15, invert: 0 },
   dramatic: { brightness: 95, contrast: 140, saturate: 70, grayscale: 0, sepia: 0, blur: 0, hue: 0, invert: 0 },
+  blur: { brightness: 100, contrast: 100, saturate: 100, grayscale: 0, sepia: 0, blur: 8, hue: 0, invert: 0 },
 };
 
 export const supportsCanvasFilter = () => typeof createCanvas(1, 1).getContext('2d').filter === 'string';
@@ -145,8 +146,9 @@ export default function mount(root, preset = {}) {
         invert: mk('Invert', 'invert', 0, 100, '%'),
       };
       const adv = advanced('More adjustments');
-      adv.body.append(sliders.sepia.el, sliders.blur.el, sliders.hue.el, sliders.invert.el);
-      panel.append(preview, look.el, sliders.brightness.el, sliders.contrast.el, sliders.saturate.el, sliders.grayscale.el, adv.el);
+      const blurFirst = preset.look === 'blur';
+      adv.body.append(sliders.sepia.el, ...(blurFirst ? [] : [sliders.blur.el]), sliders.hue.el, sliders.invert.el);
+      panel.append(preview, look.el, ...(blurFirst ? [sliders.blur.el] : []), sliders.brightness.el, sliders.contrast.el, sliders.saturate.el, sliders.grayscale.el, adv.el);
       get = () => Object.fromEntries(Object.entries(sliders).map(([k, s]) => [k, s.get()]));
       return get;
     },
